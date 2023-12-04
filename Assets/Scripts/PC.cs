@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PC : MonoBehaviour
@@ -18,6 +19,17 @@ public class PC : MonoBehaviour
 		// get the PC rotation values in the beginning of the game
 		PCOriginalRotation = transform.localRotation;
 		Cursor.lockState = CursorLockMode.Locked;
+	}
+
+	private void OnTriggerEnter(Collider collider) {
+		if (collider.name == "Portal 1")
+		{
+			Debug.Log("Teleport to Portal 2");
+			transform.position = new Vector3(1, 1, -13);
+		} else {
+			Debug.Log("Teleport to Portal 1");
+			transform.position = new Vector3(1, 1, 6);
+		}
 	}
 
 	// Update is called once per frame

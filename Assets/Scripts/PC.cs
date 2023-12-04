@@ -12,21 +12,28 @@ public class PC : MonoBehaviour
 	private Quaternion PCOriginalRotation;
 	private float counterXRotation = 0;
 
+	public LayerMask targetLayer;
+	private AudioSource audio_shooting;
+
 	// Start is called before the first frame update
 	void Start()
 	{
 		rbody = GetComponent<Rigidbody>();
+		audio_shooting = GetComponent<AudioSource>();
 		// get the PC rotation values in the beginning of the game
 		PCOriginalRotation = transform.localRotation;
 		Cursor.lockState = CursorLockMode.Locked;
 	}
 
-	private void OnTriggerEnter(Collider collider) {
+	private void OnTriggerEnter(Collider collider)
+	{
 		if (collider.name == "Portal 1")
 		{
 			Debug.Log("Teleport to Portal 2");
 			transform.position = new Vector3(1, 1, -13);
-		} else {
+		}
+		else
+		{
 			Debug.Log("Teleport to Portal 1");
 			transform.position = new Vector3(1, 1, 6);
 		}
@@ -47,5 +54,19 @@ public class PC : MonoBehaviour
 		// get angle of the axis for the number (counterXRotation) in the X axis
 		Quaternion yRotation = Quaternion.AngleAxis(counterXRotation, Vector3.up);
 		transform.localRotation = PCOriginalRotation * yRotation;
+
+		// Shooting
+		if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0))
+		{
+			// Make sound when shooting
+			audio_shooting.Play();
+			
+			RaycastHit hit;
+			if (Physics.Raycast(transform.position, transform.forward, out hit, 100, targetLayer))
+			{
+				Debug.Log("Hit the target!");
+				hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * 500);
+			}
+		}
 	}
 }

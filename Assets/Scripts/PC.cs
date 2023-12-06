@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class PC : MonoBehaviour
 {
+	public Transform PCSpawnLocation;
+	private int lifeCounter = 3;
+	private static GameObject txtLifeCounter;
+
 	private Rigidbody rbody;
 	public float speed = 5;
 
@@ -23,6 +28,31 @@ public class PC : MonoBehaviour
 		// get the PC rotation values in the beginning of the game
 		PCOriginalRotation = transform.localRotation;
 		Cursor.lockState = CursorLockMode.Locked;
+
+		// find game object for life counter text
+		txtLifeCounter = GameObject.Find("Life Counter");
+	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		// Detect when NPC Enemy touches PC
+		if (collision.gameObject.CompareTag("Enemy"))
+		{
+			// Kill PC if it still has lives left, otherwise the game is over
+			if (lifeCounter > 0)
+			{
+				lifeCounter--;
+				Debug.Log("Enemy killed PC. Going back to respawn place...");
+				// update life counter text on canvas
+				txtLifeCounter.GetComponent<TMP_Text>().text = "Vidas (" + lifeCounter.ToString() + ")";
+				// go back to respawn location
+				transform.position = PCSpawnLocation.position;
+			}
+			else
+			{
+				Debug.Log("Game Over! Loading game over scene...");
+			}
+		}
 	}
 
 	// Update is called once per frame
@@ -46,7 +76,7 @@ public class PC : MonoBehaviour
 		{
 			// Make sound when shooting
 			audio_shooting.Play();
-			
+
 			RaycastHit hit;
 			if (Physics.Raycast(transform.position, transform.forward, out hit, 100, targetLayer))
 			{

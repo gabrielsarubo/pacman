@@ -555,6 +555,7 @@ GameObject:
   - component: {fileID: 44279986}
   - component: {fileID: 44279985}
   - component: {fileID: 44279984}
+  - component: {fileID: 44279988}
   m_Layer: 0
   m_Name: Portal 1
   m_TagString: Untagged
@@ -647,8 +648,23 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 900735392}
+  - {fileID: 311334805}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
+--- !u!114 &44279988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44279983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03870fbe2c69dc44c93948b4c7b16ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PC: {fileID: 880126246}
+  teleportTo: {fileID: 438121506}
 --- !u!1 &57093147
 GameObject:
   m_ObjectHideFlags: 0
@@ -2147,6 +2163,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &311334804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 311334805}
+  m_Layer: 0
+  m_Name: Portal 1 Destination
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &311334805
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311334804}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 44279987}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &385842972
 GameObject:
   m_ObjectHideFlags: 0
@@ -2252,6 +2299,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385842972}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &438121506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 438121507}
+  m_Layer: 0
+  m_Name: Portal 2 Destination
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &438121507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438121506}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 956303581}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &449990992
 GameObject:
   m_ObjectHideFlags: 0
@@ -5361,6 +5439,7 @@ GameObject:
   - component: {fileID: 956303580}
   - component: {fileID: 956303579}
   - component: {fileID: 956303578}
+  - component: {fileID: 956303582}
   m_Layer: 0
   m_Name: Portal 2
   m_TagString: Untagged
@@ -5453,8 +5532,23 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 638582030}
+  - {fileID: 438121507}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &956303582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956303577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03870fbe2c69dc44c93948b4c7b16ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PC: {fileID: 880126246}
+  teleportTo: {fileID: 311334804}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

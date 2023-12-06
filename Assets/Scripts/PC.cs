@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PC : MonoBehaviour
 {
@@ -18,13 +19,17 @@ public class PC : MonoBehaviour
 	private float counterXRotation = 0;
 
 	public LayerMask targetLayer;
-	private AudioSource audio_shooting;
+
+	private AudioSource _audio;
+	public AudioClip sfx_death;
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		rbody = GetComponent<Rigidbody>();
-		audio_shooting = GetComponent<AudioSource>();
+
+		_audio = GetComponent<AudioSource>();
+
 		// get the PC rotation values in the beginning of the game
 		PCOriginalRotation = transform.localRotation;
 		Cursor.lockState = CursorLockMode.Locked;
@@ -41,6 +46,7 @@ public class PC : MonoBehaviour
 			// Kill PC if it still has lives left, otherwise the game is over
 			if (lifeCounter > 0)
 			{
+				_audio.PlayOneShot(sfx_death);
 				lifeCounter--;
 				Debug.Log("Enemy killed PC. Going back to respawn place...");
 				// update life counter text on canvas
@@ -51,6 +57,7 @@ public class PC : MonoBehaviour
 			else
 			{
 				Debug.Log("Game Over! Loading game over scene...");
+				SceneManager.LoadSceneAsync(2);
 			}
 		}
 	}
@@ -75,7 +82,7 @@ public class PC : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0))
 		{
 			// Make sound when shooting
-			audio_shooting.Play();
+			// _audio.Play();
 
 			RaycastHit hit;
 			if (Physics.Raycast(transform.position, transform.forward, out hit, 100, targetLayer))

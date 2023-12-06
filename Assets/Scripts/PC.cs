@@ -77,19 +77,5 @@ public class PC : MonoBehaviour
 		// get angle of the axis for the number (counterXRotation) in the X axis
 		Quaternion yRotation = Quaternion.AngleAxis(counterXRotation, Vector3.up);
 		transform.localRotation = PCOriginalRotation * yRotation;
-
-		// Shooting
-		if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0))
-		{
-			// Make sound when shooting
-			// _audio.Play();
-
-			RaycastHit hit;
-			if (Physics.Raycast(transform.position, transform.forward, out hit, 100, targetLayer))
-			{
-				Debug.Log("Hit the target!");
-				hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * 500);
-			}
-		}
 	}
 }
